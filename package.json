@@ -30,6 +30,7 @@
     "@vercel/webpack-asset-relocator-loader": "1.7.3",
     "css-loader": "^6.0.0",
     "electron": "22.0.0",
+    "electron-devtools-installer": "^3.2.0",
     "eslint": "^8.0.1",
     "eslint-plugin-import": "^2.25.0",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
@@ -43,6 +44,7 @@
     "@chakra-ui/react": "^2.4.6",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@redux-devtools/extension": "^3.2.3",
     "@reduxjs/toolkit": "^1.9.1",
     "electron-squirrel-startup": "^1.0.0",
     "framer-motion": "^8.0.2",
@@ -50,6 +52,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.41.3",
     "react-redux": "^8.0.5",
+    "redux-persist": "^6.0.0",
     "styled-components": "^5.3.6"
   }
 }

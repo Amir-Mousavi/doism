@@ -89,3 +89,8 @@ typings/
 out/
 
 .vscode/settings.json
+/.idea/doism.iml
+/.idea/modules.xml
+/.idea/prettier.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml

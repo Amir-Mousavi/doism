@@ -99,4 +99,27 @@ describe("test reducer", () => {
       ],
     });
   });
+
+  test("should handle removeDirectory", () => {
+    expect(
+      reducer(
+        {
+          directories: [
+            {
+              title: "New Directory",
+              description: "This is a new directory",
+              tags: ["tag1", "tag2"],
+              projects: [],
+              id: "1234",
+            },
+          ],
+        },
+        actions.removeDirectory({
+          id: "1234",
+        })
+      )
+    ).toEqual({
+      directories: [],
+    });
+  });
 });

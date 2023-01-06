@@ -31,6 +31,10 @@ export const directorySlice = createSlice({
         directory.tags = directory.tags.concat(tags);
       }
     },
+    removeDirectory: (state, action) => {
+      const { id } = action.payload;
+      state.directories = state.directories.filter((d) => d.id !== id);
+    },
   },
 });
 

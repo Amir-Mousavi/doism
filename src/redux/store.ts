@@ -1,4 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { reducer as directoryReducer } from "../Domains/Directory/redux/slice";
 import {
   persistStore,
   persistReducer,
@@ -12,16 +13,17 @@ import {
 
 import storage from "redux-persist/lib/storage";
 
-const rootReducer = () => {
-  return { name: "Test_Redux" };
-};
-
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
 };
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const reducers = combineReducers({
+  directory: directoryReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
   reducer: persistedReducer,

@@ -1,7 +1,7 @@
 import { describe, expect, test } from "@jest/globals";
 import { reducer, actions } from "./slice";
 
-describe("test reducer", () => {
+describe("Directory reducer", () => {
   test("should return the initial state", () => {
     expect(reducer(undefined, actions.createDirectory)).toEqual({
       directories: [],
@@ -393,6 +393,29 @@ describe("test reducer", () => {
           isDeleted: false,
         },
       ],
+    });
+  });
+
+  test("should handle delete directory", () => {
+    expect(
+      reducer(
+        {
+          directories: [
+            {
+              title: "New Directory",
+              description: "This is a new directory",
+              tags: ["tag1", "tag2"],
+              projects: ["5678"],
+              id: "1234",
+            },
+          ],
+        },
+        actions.deleteDirectory({
+          id: "1234",
+        })
+      )
+    ).toEqual({
+      directories: [],
     });
   });
 });

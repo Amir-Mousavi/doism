@@ -69,6 +69,13 @@ export const directorySlice = createSlice({
         directory.tags = directory.tags.filter((t) => !tags.includes(t));
       }
     },
+    archiveDirectory: (state, action) => {
+      const { id } = action.payload;
+      const directory = state.directories.find((d) => d.id === id);
+      if (directory) {
+        directory.isArchived = true;
+      }
+    },
   },
 });
 

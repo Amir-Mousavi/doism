@@ -265,4 +265,36 @@ describe("test reducer", () => {
       ],
     });
   });
+
+  test("should handle archive directory", () => {
+    expect(
+      reducer(
+        {
+          directories: [
+            {
+              title: "New Directory",
+              description: "This is a new directory",
+              tags: ["tag1", "tag2"],
+              projects: ["5678"],
+              id: "1234",
+            },
+          ],
+        },
+        actions.archiveDirectory({
+          id: "1234",
+        })
+      )
+    ).toEqual({
+      directories: [
+        {
+          title: "New Directory",
+          description: "This is a new directory",
+          tags: ["tag1", "tag2"],
+          projects: ["5678"],
+          id: "1234",
+          isArchived: true,
+        },
+      ],
+    });
+  });
 });

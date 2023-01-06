@@ -1,6 +1,7 @@
 import { Priority } from "../enums/Priority";
+import { BaseModel } from "./BaseModel";
 
-export type Todo = {
+export type Todo = BaseModel & {
   title: string;
   dueDate?: Date;
   startDate?: Date;
@@ -10,5 +11,4 @@ export type Todo = {
   subTasks?: Todo[];
   completed?: boolean;
   duration?: number;
-  id?: string;
 };

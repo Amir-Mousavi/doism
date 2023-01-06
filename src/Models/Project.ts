@@ -1,6 +1,7 @@
 import { Todo } from "./Todo";
+import { BaseModel } from "./BaseModel";
 
-export type Project = {
+export type Project = BaseModel & {
   title: string;
   description?: string;
   tags: string[];

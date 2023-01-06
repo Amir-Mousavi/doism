@@ -3,7 +3,7 @@ import { reducer, actions } from "./slice";
 
 describe("Directory reducer", () => {
   test("should return the initial state", () => {
-    expect(reducer(undefined, actions.createDirectory)).toEqual({
+    expect(reducer(undefined, { type: undefined })).toEqual({
       directories: [],
     });
   });
@@ -30,6 +30,8 @@ describe("Directory reducer", () => {
           tags: ["tag1", "tag2"],
           projects: [],
           id: expect.any(String),
+          createdAt: expect.any(Date),
+          updatedAt: expect.any(Date),
         },
       ],
     });

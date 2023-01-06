@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Directory } from "../../../Models/Directory";
+import { v4 as uuid } from "uuid";
 
 export interface DirectoryState {
   directories: Directory[];
@@ -14,7 +15,12 @@ export const directorySlice = createSlice({
   initialState,
   reducers: {
     createDirectory: (state, action) => {
-      state.directories.push(action.payload);
+      state.directories.push({
+        ...action.payload,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        id: uuid(),
+      });
     },
     updateDirectoryTitleAndDescription: (state, action) => {
       const { id, title, description } = action.payload;

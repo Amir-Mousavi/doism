@@ -90,6 +90,17 @@ export const directorySlice = createSlice({
         directory.isDeleted = true;
       }
     },
+    markDirectoryAsNotDeleted: (state, action) => {
+      const { id } = action.payload;
+      const directory = state.directories.find((d) => d.id === id);
+      if (directory) {
+        directory.isDeleted = false;
+      }
+    },
+    deleteDirectory: (state, action) => {
+      const { id } = action.payload;
+      state.directories = state.directories.filter((d) => d.id !== id);
+    },
   },
 });
 

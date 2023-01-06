@@ -362,4 +362,37 @@ describe("test reducer", () => {
       ],
     });
   });
+
+  test("should handle unmark as deleted directory", () => {
+    expect(
+      reducer(
+        {
+          directories: [
+            {
+              title: "New Directory",
+              description: "This is a new directory",
+              tags: ["tag1", "tag2"],
+              projects: ["5678"],
+              id: "1234",
+              isDeleted: true,
+            },
+          ],
+        },
+        actions.markDirectoryAsNotDeleted({
+          id: "1234",
+        })
+      )
+    ).toEqual({
+      directories: [
+        {
+          title: "New Directory",
+          description: "This is a new directory",
+          tags: ["tag1", "tag2"],
+          projects: ["5678"],
+          id: "1234",
+          isDeleted: false,
+        },
+      ],
+    });
+  });
 });

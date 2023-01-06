@@ -1,9 +1,8 @@
-import { Project } from "./Project";
 import { BaseModel } from "./BaseModel";
 
 export type Directory = BaseModel & {
   title: string;
   description?: string;
   tags?: string[];
-  projects: Project[];
+  projects: string[];
 };

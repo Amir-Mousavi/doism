@@ -122,4 +122,36 @@ describe("test reducer", () => {
       directories: [],
     });
   });
+
+  test("should handle addProjectToDirectory", () => {
+    expect(
+      reducer(
+        {
+          directories: [
+            {
+              title: "New Directory",
+              description: "This is a new directory",
+              tags: ["tag1", "tag2"],
+              projects: [],
+              id: "1234",
+            },
+          ],
+        },
+        actions.addProjectToDirectory({
+          id: "1234",
+          projectId: "5678",
+        })
+      )
+    ).toEqual({
+      directories: [
+        {
+          title: "New Directory",
+          description: "This is a new directory",
+          tags: ["tag1", "tag2"],
+          projects: ["5678"],
+          id: "1234",
+        },
+      ],
+    });
+  });
 });

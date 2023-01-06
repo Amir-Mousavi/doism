@@ -3,4 +3,8 @@ export type BaseModel = {
   updatedAt?: Date;
 
   id: string;
+
+  isArchived?: boolean;
+
+  isDeleted?: boolean;
 };

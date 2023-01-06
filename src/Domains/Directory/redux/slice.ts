@@ -42,6 +42,19 @@ export const directorySlice = createSlice({
         directory.projects.push(projectId);
       }
     },
+    moveProjectToDirectory: (state, action) => {
+      const { id, projectId, newDirectoryId } = action.payload;
+      const directory = state.directories.find((d) => d.id === id);
+      if (directory) {
+        directory.projects = directory.projects.filter((p) => p !== projectId);
+      }
+      const newDirectory = state.directories.find(
+        (d) => d.id === newDirectoryId
+      );
+      if (newDirectory) {
+        newDirectory.projects.push(projectId);
+      }
+    },
   },
 });
 

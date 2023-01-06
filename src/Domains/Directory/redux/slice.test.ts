@@ -154,4 +154,51 @@ describe("test reducer", () => {
       ],
     });
   });
+
+  test("should handle move project to directory", () => {
+    expect(
+      reducer(
+        {
+          directories: [
+            {
+              title: "New Directory",
+              description: "This is a new directory",
+              tags: ["tag1", "tag2"],
+              projects: ["5678"],
+              id: "1234",
+            },
+            {
+              title: "New Directory 2",
+              description: "This is a new directory 2",
+              tags: ["tag1", "tag2"],
+              projects: [],
+              id: "1235",
+            },
+          ],
+        },
+        actions.moveProjectToDirectory({
+          id: "1234",
+          projectId: "5678",
+          newDirectoryId: "1235",
+        })
+      )
+    ).toEqual({
+      directories: [
+        {
+          title: "New Directory",
+          description: "This is a new directory",
+          tags: ["tag1", "tag2"],
+          projects: [],
+          id: "1234",
+        },
+        {
+          title: "New Directory 2",
+          description: "This is a new directory 2",
+          tags: ["tag1", "tag2"],
+          projects: ["5678"],
+          id: "1235",
+        },
+      ],
+    });
+  });
 });

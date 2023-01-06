@@ -55,6 +55,13 @@ export const directorySlice = createSlice({
         newDirectory.projects.push(projectId);
       }
     },
+    removeTagsFromDirectory: (state, action) => {
+      const { id, tags } = action.payload;
+      const directory = state.directories.find((d) => d.id === id);
+      if (directory) {
+        directory.tags = directory.tags.filter((t) => !tags.includes(t));
+      }
+    },
   },
 });
 

@@ -201,4 +201,36 @@ describe("test reducer", () => {
       ],
     });
   });
+
+  test("should handle remove tags from directory", () => {
+    expect(
+      reducer(
+        {
+          directories: [
+            {
+              title: "New Directory",
+              description: "This is a new directory",
+              tags: ["tag1", "tag2"],
+              projects: [],
+              id: "1234",
+            },
+          ],
+        },
+        actions.removeTagsFromDirectory({
+          id: "1234",
+          tags: ["tag1"],
+        })
+      )
+    ).toEqual({
+      directories: [
+        {
+          title: "New Directory",
+          description: "This is a new directory",
+          tags: ["tag2"],
+          projects: [],
+          id: "1234",
+        },
+      ],
+    });
+  });
 });

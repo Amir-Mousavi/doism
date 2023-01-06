@@ -233,4 +233,36 @@ describe("test reducer", () => {
       ],
     });
   });
+
+  test("should handle remove project from directory", () => {
+    expect(
+      reducer(
+        {
+          directories: [
+            {
+              title: "New Directory",
+              description: "This is a new directory",
+              tags: ["tag1", "tag2"],
+              projects: ["5678"],
+              id: "1234",
+            },
+          ],
+        },
+        actions.removeProjectFromDirectory({
+          id: "1234",
+          projectId: "5678",
+        })
+      )
+    ).toEqual({
+      directories: [
+        {
+          title: "New Directory",
+          description: "This is a new directory",
+          tags: ["tag1", "tag2"],
+          projects: [],
+          id: "1234",
+        },
+      ],
+    });
+  });
 });

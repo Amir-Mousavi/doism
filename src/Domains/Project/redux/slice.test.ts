@@ -361,4 +361,65 @@ describe("Project reducer", () => {
       ],
     });
   });
+
+  test("should handle moveTaskToProject", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2", "tag3", "tag4"],
+              id: "1234",
+              todos: [
+                {
+                  title: "New Task",
+                  id: "1234",
+                },
+              ],
+              color: "blue",
+            },
+            {
+              title: "New Project2",
+              description: "This is a new project",
+              tags: ["tag1", "tag2", "tag3", "tag4"],
+              id: "12344",
+              todos: [],
+              color: "blue",
+            },
+          ],
+        },
+        actions.moveTaskToProject({
+          currenProjectId: "1234",
+          todoId: "1234",
+          newProjectId: "12344",
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "New Project",
+          description: "This is a new project",
+          tags: ["tag1", "tag2", "tag3", "tag4"],
+          id: "1234",
+          todos: [],
+          color: "blue",
+        },
+        {
+          title: "New Project2",
+          description: "This is a new project",
+          tags: ["tag1", "tag2", "tag3", "tag4"],
+          id: "12344",
+          todos: [
+            {
+              title: "New Task",
+              id: "1234",
+            },
+          ],
+          color: "blue",
+        },
+      ],
+    });
+  });
 });

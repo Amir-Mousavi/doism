@@ -98,6 +98,25 @@ export const projectSlice = createSlice({
         project.todos = project.todos.concat(newTodo);
       }
     },
+    moveTaskToProject: (state, action) => {
+      const { currenProjectId, todoId, newProjectId } = action.payload;
+
+      // Find the old project
+      const project = state.projects.find((p) => p.id === currenProjectId);
+      // Find the task
+      const todo = project?.todos.find((t) => t.id === todoId);
+
+      // Find the new project
+      project.todos = project.todos.filter((t) => t.id !== todoId);
+
+      // Find the new project
+      const newProject = state.projects.find((p) => p.id === newProjectId);
+
+      // Add the task to the new project if it exists
+      if (newProject && todo) {
+        newProject.todos = newProject.todos.concat(todo);
+      }
+    },
   },
 });
 

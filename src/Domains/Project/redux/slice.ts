@@ -117,6 +117,22 @@ export const projectSlice = createSlice({
         newProject.todos = newProject.todos.concat(todo);
       }
     },
+    addSubTaskToTask: (state, action) => {
+      const { projectId, todoId, subTaskTitle } = action.payload;
+
+      const project = state.projects.find((p) => p.id === projectId);
+      const todo = project?.todos.find((t) => t.id === todoId);
+
+      if (todo) {
+        if (!todo.steps) {
+          todo.steps = [];
+        }
+        todo.steps = todo.steps.concat({
+          id: uuid(),
+          title: subTaskTitle,
+        });
+      }
+    },
   },
 });
 

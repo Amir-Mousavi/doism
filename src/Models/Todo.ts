@@ -8,7 +8,7 @@ export type Todo = BaseModel & {
   description?: string;
   tags?: string[];
   priority?: Priority;
-  subTasks?: Todo[];
+  steps?: Todo[];
   completed?: boolean;
   duration?: number;
 };

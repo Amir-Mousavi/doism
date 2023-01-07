@@ -77,6 +77,13 @@ export const projectSlice = createSlice({
         project.tags = project.tags.concat(tags);
       }
     },
+    removeTagsFromProject: (state, action) => {
+      const { id, tags } = action.payload;
+      const project = state.projects.find((p) => p.id === id);
+      if (project) {
+        project.tags = project.tags.filter((t) => !tags.includes(t));
+      }
+    },
   },
 });
 

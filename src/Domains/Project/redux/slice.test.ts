@@ -34,4 +34,37 @@ describe("Project reducer", () => {
       ],
     });
   });
+
+  test("should handle updateProjectTitleAndDescription", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2"],
+              id: "1234",
+              todos: [],
+            },
+          ],
+        },
+        actions.updateProjectTitleAndDescription({
+          id: "1234",
+          title: "Updated Project",
+          description: "This is an updated project",
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "Updated Project",
+          description: "This is an updated project",
+          tags: ["tag1", "tag2"],
+          id: "1234",
+          todos: [],
+        },
+      ],
+    });
+  });
 });

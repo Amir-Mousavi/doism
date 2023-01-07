@@ -23,6 +23,14 @@ export const projectSlice = createSlice({
         id: uuid(),
       });
     },
+    updateProjectTitleAndDescription: (state, action) => {
+      const { id, title, description } = action.payload;
+      const project = state.projects.find((p) => p.id === id);
+      if (project) {
+        project.title = title;
+        project.description = description;
+      }
+    },
   },
 });
 

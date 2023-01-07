@@ -38,6 +38,13 @@ export const projectSlice = createSlice({
         project.isDeleted = true;
       }
     },
+    markProjectAsNotDeleted: (state, action) => {
+      const { id } = action.payload;
+      const project = state.projects.find((p) => p.id === id);
+      if (project) {
+        project.isDeleted = false;
+      }
+    },
   },
 });
 

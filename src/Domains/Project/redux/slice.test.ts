@@ -99,4 +99,37 @@ describe("Project reducer", () => {
       ],
     });
   });
+
+  test("should handle markProjectAsNotDeleted", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2"],
+              id: "1234",
+              todos: [],
+              isDeleted: true,
+            },
+          ],
+        },
+        actions.markProjectAsNotDeleted({
+          id: "1234",
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "New Project",
+          description: "This is a new project",
+          tags: ["tag1", "tag2"],
+          id: "1234",
+          todos: [],
+          isDeleted: false,
+        },
+      ],
+    });
+  });
 });

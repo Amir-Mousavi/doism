@@ -145,6 +145,28 @@ export const projectSlice = createSlice({
         });
       });
     },
+    markTaskAsCompleted: (state, action) => {
+      const { todoId } = action.payload;
+
+      state.projects.forEach((p) => {
+        p.todos.forEach((t) => {
+          if (t.id === todoId) {
+            t.completed = true;
+          }
+        });
+      });
+    },
+    markTaskAsNotCompleted: (state, action) => {
+      const { todoId } = action.payload;
+
+      state.projects.forEach((p) => {
+        p.todos.forEach((t) => {
+          if (t.id === todoId) {
+            t.completed = false;
+          }
+        });
+      });
+    },
   },
 });
 

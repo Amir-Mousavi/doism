@@ -522,4 +522,117 @@ describe("Project reducer", () => {
       ],
     });
   });
+
+  test("should handle markTaskAsCompleted", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2", "tag3", "tag4"],
+              id: "1234",
+              todos: [
+                {
+                  title: "New Task",
+                  id: "1234",
+                  steps: [
+                    {
+                      title: "New Sub Task",
+                      id: "1234",
+                    },
+                  ],
+                },
+              ],
+              color: "blue",
+            },
+          ],
+        },
+        actions.markTaskAsCompleted({
+          todoId: "1234",
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "New Project",
+          description: "This is a new project",
+          tags: ["tag1", "tag2", "tag3", "tag4"],
+          id: "1234",
+          todos: [
+            {
+              title: "New Task",
+              id: "1234",
+              steps: [
+                {
+                  title: "New Sub Task",
+                  id: "1234",
+                },
+              ],
+              completed: true,
+            },
+          ],
+          color: "blue",
+        },
+      ],
+    });
+  });
+
+  test("should handle markTaskAsUncompleted", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2", "tag3", "tag4"],
+              id: "1234",
+              todos: [
+                {
+                  title: "New Task",
+                  id: "1234",
+                  steps: [
+                    {
+                      title: "New Sub Task",
+                      id: "1234",
+                    },
+                  ],
+                  completed: true,
+                },
+              ],
+              color: "blue",
+            },
+          ],
+        },
+        actions.markTaskAsNotCompleted({
+          todoId: "1234",
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "New Project",
+          description: "This is a new project",
+          tags: ["tag1", "tag2", "tag3", "tag4"],
+          id: "1234",
+          todos: [
+            {
+              title: "New Task",
+              id: "1234",
+              steps: [
+                {
+                  title: "New Sub Task",
+                  id: "1234",
+                },
+              ],
+              completed: false,
+            },
+          ],
+          color: "blue",
+        },
+      ],
+    });
+  });
 });

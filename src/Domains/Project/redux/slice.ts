@@ -70,6 +70,13 @@ export const projectSlice = createSlice({
         project.color = color;
       }
     },
+    addTagsToProject: (state, action) => {
+      const { id, tags } = action.payload;
+      const project = state.projects.find((p) => p.id === id);
+      if (project) {
+        project.tags = project.tags.concat(tags);
+      }
+    },
   },
 });
 

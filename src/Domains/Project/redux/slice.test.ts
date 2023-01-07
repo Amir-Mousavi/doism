@@ -254,4 +254,38 @@ describe("Project reducer", () => {
       ],
     });
   });
+
+  test("should handle addProjectTag", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2"],
+              id: "1234",
+              todos: [],
+              color: "blue",
+            },
+          ],
+        },
+        actions.addTagsToProject({
+          id: "1234",
+          tags: ["tag3", "tag4"],
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "New Project",
+          description: "This is a new project",
+          tags: ["tag1", "tag2", "tag3", "tag4"],
+          id: "1234",
+          todos: [],
+          color: "blue",
+        },
+      ],
+    });
+  });
 });

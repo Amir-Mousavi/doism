@@ -220,4 +220,38 @@ describe("Project reducer", () => {
       projects: [],
     });
   });
+
+  test("should handle changeProjectColor", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2"],
+              id: "1234",
+              todos: [],
+              color: "blue",
+            },
+          ],
+        },
+        actions.changeProjectColor({
+          id: "1234",
+          color: "red",
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "New Project",
+          description: "This is a new project",
+          tags: ["tag1", "tag2"],
+          id: "1234",
+          todos: [],
+          color: "red",
+        },
+      ],
+    });
+  });
 });

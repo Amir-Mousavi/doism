@@ -63,6 +63,13 @@ export const projectSlice = createSlice({
       const { id } = action.payload;
       state.projects = state.projects.filter((p) => p.id !== id);
     },
+    changeProjectColor: (state, action) => {
+      const { id, color } = action.payload;
+      const project = state.projects.find((p) => p.id === id);
+      if (project) {
+        project.color = color;
+      }
+    },
   },
 });
 

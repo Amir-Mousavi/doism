@@ -118,20 +118,32 @@ export const projectSlice = createSlice({
       }
     },
     addSubTaskToTask: (state, action) => {
-      const { projectId, todoId, subTaskTitle } = action.payload;
+      const { todoId, subTaskTitle } = action.payload;
 
-      const project = state.projects.find((p) => p.id === projectId);
-      const todo = project?.todos.find((t) => t.id === todoId);
+      state.projects.forEach((project) => {
+        const todo = project.todos.find((t) => t.id === todoId);
+        if (todo) {
+          if (!todo.steps) {
+            todo.steps = [];
+          }
 
-      if (todo) {
-        if (!todo.steps) {
-          todo.steps = [];
+          todo.steps = todo.steps.concat({
+            id: uuid(),
+            title: subTaskTitle,
+          });
         }
-        todo.steps = todo.steps.concat({
-          id: uuid(),
-          title: subTaskTitle,
+      });
+    },
+    removeSubTaskFromTask: (state, action) => {
+      const { subTaskId } = action.payload;
+
+      state.projects.forEach((p) => {
+        p?.todos.forEach((t) => {
+          if (t.steps) {
+            t.steps = t.steps.filter((s) => s.id !== subTaskId);
+          }
         });
-      }
+      });
     },
   },
 });

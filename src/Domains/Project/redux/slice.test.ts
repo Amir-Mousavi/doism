@@ -444,7 +444,6 @@ describe("Project reducer", () => {
           ],
         },
         actions.addSubTaskToTask({
-          projectId: "1234",
           todoId: "1234",
           subTaskTitle: "New Sub Task",
         })
@@ -466,6 +465,56 @@ describe("Project reducer", () => {
                   id: expect.any(String),
                 },
               ],
+            },
+          ],
+          color: "blue",
+        },
+      ],
+    });
+  });
+
+  test("should handle removeSubTaskFromTask", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2", "tag3", "tag4"],
+              id: "1234",
+              todos: [
+                {
+                  title: "New Task",
+                  id: "1234",
+                  steps: [
+                    {
+                      title: "New Sub Task",
+                      id: "1234",
+                    },
+                  ],
+                },
+              ],
+              color: "blue",
+            },
+          ],
+        },
+        actions.removeSubTaskFromTask({
+          subTaskId: "1234",
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "New Project",
+          description: "This is a new project",
+          tags: ["tag1", "tag2", "tag3", "tag4"],
+          id: "1234",
+          todos: [
+            {
+              title: "New Task",
+              id: "1234",
+              steps: [],
             },
           ],
           color: "blue",

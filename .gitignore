@@ -94,3 +94,5 @@ out/
 /.idea/prettier.xml
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/vcs.xml
+/.github/
+/.vscode/

@@ -167,6 +167,40 @@ export const projectSlice = createSlice({
         });
       });
     },
+    markSubTaskAsCompleted: (state, action) => {
+      const { subTaskId } = action.payload;
+
+      state.projects.forEach((p) => {
+        p.todos.forEach((t) => {
+          if (t.steps) {
+            t.steps
+              .filter((s) => !s.completed)
+              .forEach((s) => {
+                if (s.id === subTaskId) {
+                  s.completed = true;
+                }
+              });
+          }
+        });
+      });
+    },
+    markSubTaskAsNotCompleted: (state, action) => {
+      const { subTaskId } = action.payload;
+
+      state.projects.forEach((p) => {
+        p.todos.forEach((t) => {
+          if (t.steps) {
+            t.steps
+              .filter((s) => s.completed)
+              .forEach((s) => {
+                if (s.id === subTaskId) {
+                  s.completed = false;
+                }
+              });
+          }
+        });
+      });
+    },
   },
 });
 

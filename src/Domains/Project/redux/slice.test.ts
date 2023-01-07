@@ -635,4 +635,117 @@ describe("Project reducer", () => {
       ],
     });
   });
+
+  test("should handle markSubTaskAsCompleted", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2", "tag3", "tag4"],
+              id: "1234",
+              todos: [
+                {
+                  title: "New Task",
+                  id: "1234",
+                  steps: [
+                    {
+                      title: "New Sub Task",
+                      id: "1234777",
+                    },
+                  ],
+                },
+              ],
+              color: "blue",
+            },
+          ],
+        },
+        actions.markSubTaskAsCompleted({
+          subTaskId: "1234777",
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "New Project",
+          description: "This is a new project",
+          tags: ["tag1", "tag2", "tag3", "tag4"],
+          id: "1234",
+          todos: [
+            {
+              title: "New Task",
+              id: "1234",
+              steps: [
+                {
+                  completed: true,
+                  title: "New Sub Task",
+                  id: "1234777",
+                },
+              ],
+            },
+          ],
+          color: "blue",
+        },
+      ],
+    });
+  });
+
+  test("should handle markSubTaskAsUncompleted", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2", "tag3", "tag4"],
+              id: "1234",
+              todos: [
+                {
+                  title: "New Task",
+                  id: "1234",
+                  steps: [
+                    {
+                      title: "New Sub Task",
+                      id: "1234777",
+                      completed: true,
+                    },
+                  ],
+                },
+              ],
+              color: "blue",
+            },
+          ],
+        },
+        actions.markSubTaskAsNotCompleted({
+          subTaskId: "1234777",
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "New Project",
+          description: "This is a new project",
+          tags: ["tag1", "tag2", "tag3", "tag4"],
+          id: "1234",
+          todos: [
+            {
+              title: "New Task",
+              id: "1234",
+              steps: [
+                {
+                  completed: false,
+                  title: "New Sub Task",
+                  id: "1234777",
+                },
+              ],
+            },
+          ],
+          color: "blue",
+        },
+      ],
+    });
+  });
 });

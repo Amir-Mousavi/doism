@@ -132,4 +132,69 @@ describe("Project reducer", () => {
       ],
     });
   });
+
+  test("should handle markProjectAsArchived", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2"],
+              id: "1234",
+              todos: [],
+            },
+          ],
+        },
+        actions.markProjectAsArchived({
+          id: "1234",
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "New Project",
+          description: "This is a new project",
+          tags: ["tag1", "tag2"],
+          id: "1234",
+          todos: [],
+          isArchived: true,
+        },
+      ],
+    });
+  });
+
+  test("should handle markProjectAsNotArchived", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2"],
+              id: "1234",
+              todos: [],
+              isArchived: true,
+            },
+          ],
+        },
+        actions.markProjectAsNotArchived({
+          id: "1234",
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "New Project",
+          description: "This is a new project",
+          tags: ["tag1", "tag2"],
+          id: "1234",
+          todos: [],
+          isArchived: false,
+        },
+      ],
+    });
+  });
 });

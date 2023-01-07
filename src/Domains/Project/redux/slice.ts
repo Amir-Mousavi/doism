@@ -45,6 +45,20 @@ export const projectSlice = createSlice({
         project.isDeleted = false;
       }
     },
+    markProjectAsArchived: (state, action) => {
+      const { id } = action.payload;
+      const project = state.projects.find((p) => p.id === id);
+      if (project) {
+        project.isArchived = true;
+      }
+    },
+    markProjectAsNotArchived: (state, action) => {
+      const { id } = action.payload;
+      const project = state.projects.find((p) => p.id === id);
+      if (project) {
+        project.isArchived = false;
+      }
+    },
   },
 });
 

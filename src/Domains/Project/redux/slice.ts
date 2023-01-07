@@ -14,7 +14,16 @@ const initialState: ProjectState = {
 export const projectSlice = createSlice({
   name: "project",
   initialState,
-  reducers: {},
+  reducers: {
+    createProject: (state, action) => {
+      state.projects.push({
+        ...action.payload,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        id: uuid(),
+      });
+    },
+  },
 });
 
 export const { actions, reducer } = projectSlice;

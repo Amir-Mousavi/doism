@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { reducer as directoryReducer } from "../Domains/Directory/redux/slice";
+import { reducer as projectReducer } from "../Domains/Project/redux/slice";
 import {
   persistStore,
   persistReducer,
@@ -21,6 +22,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   directory: directoryReducer,
+  project: projectReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

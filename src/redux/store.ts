@@ -1,6 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { reducer as directoryReducer } from "../Domains/Directory/redux/slice";
 import { reducer as projectReducer } from "../Domains/Project/redux/slice";
+import { reducer as appReducer } from "./appSlice";
+
 import {
   persistStore,
   persistReducer,
@@ -23,6 +25,7 @@ const persistConfig = {
 const reducers = combineReducers({
   directory: directoryReducer,
   project: projectReducer,
+  app: appReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -36,5 +39,7 @@ export const store = configureStore({
       },
     }),
 });
+
+export type RootState = ReturnType<typeof store.getState>;
 
 export const persistor = persistStore(store);

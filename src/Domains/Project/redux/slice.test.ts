@@ -322,4 +322,43 @@ describe("Project reducer", () => {
       ],
     });
   });
+
+  test("should handle addTodoToProject", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2", "tag3", "tag4"],
+              id: "1234",
+              todos: [],
+              color: "blue",
+            },
+          ],
+        },
+        actions.addTaskToProject({
+          id: "1234",
+          taskTitle: "New Task",
+        })
+      )
+    ).toEqual({
+      projects: [
+        {
+          title: "New Project",
+          description: "This is a new project",
+          tags: ["tag1", "tag2", "tag3", "tag4"],
+          id: "1234",
+          todos: [
+            {
+              title: "New Task",
+              id: expect.any(String),
+            },
+          ],
+          color: "blue",
+        },
+      ],
+    });
+  });
 });

@@ -6,7 +6,7 @@ export type Todo = BaseModel & {
   dueDate?: Date;
   startDate?: Date;
   description?: string;
-  tags: string[];
+  tags?: string[];
   priority?: Priority;
   subTasks?: Todo[];
   completed?: boolean;

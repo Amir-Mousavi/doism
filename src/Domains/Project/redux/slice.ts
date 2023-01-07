@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { Project } from "../../../Models/Project";
 import { v4 as uuid } from "uuid";
+import { Todo } from "../../../Models/Todo";
 
 export interface ProjectState {
   projects: Project[];
@@ -82,6 +83,19 @@ export const projectSlice = createSlice({
       const project = state.projects.find((p) => p.id === id);
       if (project) {
         project.tags = project.tags.filter((t) => !tags.includes(t));
+      }
+    },
+    addTaskToProject: (state, action) => {
+      const { id, taskTitle } = action.payload;
+
+      const newTodo: Todo = {
+        id: uuid(),
+        title: taskTitle,
+      };
+
+      const project = state.projects.find((p) => p.id === id);
+      if (project) {
+        project.todos = project.todos.concat(newTodo);
       }
     },
   },

@@ -197,4 +197,27 @@ describe("Project reducer", () => {
       ],
     });
   });
+
+  test("should handle deleteProject", () => {
+    expect(
+      reducer(
+        {
+          projects: [
+            {
+              title: "New Project",
+              description: "This is a new project",
+              tags: ["tag1", "tag2"],
+              id: "1234",
+              todos: [],
+            },
+          ],
+        },
+        actions.deleteProject({
+          id: "1234",
+        })
+      )
+    ).toEqual({
+      projects: [],
+    });
+  });
 });

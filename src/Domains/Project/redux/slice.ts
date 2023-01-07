@@ -59,6 +59,10 @@ export const projectSlice = createSlice({
         project.isArchived = false;
       }
     },
+    deleteProject: (state, action) => {
+      const { id } = action.payload;
+      state.projects = state.projects.filter((p) => p.id !== id);
+    },
   },
 });
 

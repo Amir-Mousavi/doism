@@ -5,10 +5,12 @@ import { actions } from "../../redux/appSlice";
 import { appSelectors } from "../../redux/app.selectors";
 import LeftPane from "../LeftPane";
 import HamburgerButton from "../Shared/HamburgerButton";
-
+import { useTranslation } from "react-i18next";
 export default function Dashboard() {
   const dispatch = useDispatch();
   const isLeftDrawerOpen = useSelector(appSelectors.isLeftDrawerOpen);
+  const { t } = useTranslation();
+
   return (
     <Flex>
       <LeftPane />
@@ -19,6 +21,8 @@ export default function Dashboard() {
           }}
         />
       )}
+
+      <h1>{t("doism")}</h1>
     </Flex>
   );
 }

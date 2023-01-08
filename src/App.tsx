@@ -7,6 +7,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { PersistGate } from "redux-persist/integration/react";
 import router from "./routes";
 import theme from "./style/theme";
+import "./i18n/i18n";
 const App = () => (
   <React.StrictMode>
     <Provider store={store}>

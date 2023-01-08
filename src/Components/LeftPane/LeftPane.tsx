@@ -17,7 +17,6 @@ export default function LeftPane() {
 
   return (
     <LeftPaneContainer>
-      <h2>Left Pane</h2>
       <HamburgerButton
         onClick={() => {
           dispatch(actions.closeLeftDrawer());

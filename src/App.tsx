@@ -6,15 +6,17 @@ import { Provider } from "react-redux";
 import { ChakraProvider } from "@chakra-ui/react";
 import { PersistGate } from "redux-persist/integration/react";
 import router from "./routes";
-
+import theme from "./style/theme";
 const App = () => (
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <ChakraProvider>
-        <RouterProvider router={router} />
-      </ChakraProvider>
-    </PersistGate>
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ChakraProvider theme={theme}>
+          <RouterProvider router={router} />
+        </ChakraProvider>
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
 );
 
 function render() {

@@ -12,16 +12,13 @@ export default function Dashboard() {
   return (
     <Flex>
       <LeftPane />
-      <div>
-        {!isLeftDrawerOpen && (
-          <HamburgerButton
-            onClick={() => {
-              dispatch(actions.openLeftDrawer());
-            }}
-          />
-        )}
-        <h2>Dashboard</h2>
-      </div>
+      {!isLeftDrawerOpen && (
+        <HamburgerButton
+          onClick={() => {
+            dispatch(actions.openLeftDrawer());
+          }}
+        />
+      )}
     </Flex>
   );
 }

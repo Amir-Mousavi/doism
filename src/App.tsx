@@ -8,6 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import router from "./routes";
 import theme from "./style/theme";
 import "./i18n/i18n";
+import "./index.css";
 const App = () => (
   <React.StrictMode>
     <Provider store={store}>
